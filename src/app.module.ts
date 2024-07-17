@@ -3,20 +3,23 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostEntity } from './db/post.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductEntity } from './db/product.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost', // or the Docker service name if NestJS is also in a container
+      host: 'localhost',
       port: 3307,
-      username: 'myuser',
-      password: 'mypassword',
-      database: 'mydatabase',
-      entities: [PostEntity],
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
+      entities: [PostEntity,ProductEntity],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([PostEntity])
+    TypeOrmModule.forFeature([PostEntity,ProductEntity])
   ],
   controllers: [AppController],
   providers: [AppService],

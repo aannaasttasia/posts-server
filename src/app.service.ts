@@ -1,21 +1,59 @@
 import { Injectable } from '@nestjs/common';
-import { PostDto } from './dto/post.dto';
-import { GetPostsQueryDto } from './dto/get-posts-query.dto';
-import { PostEntity } from './db/post.entity';
-import { PostPreviewDto, PostsDto } from './dto/posts.dto';
-import { SuccessDto } from './dto/success.dto';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ProductEntity } from './db/product.entity';
+import { NewProductDto } from './dto/new-product.dto';
+import { PostEntity } from './db/post.entity';
 import { NewPostDto } from './dto/new-post.dto';
+import { GetPostsQueryDto } from './dto/get-posts-query.dto';
+import { PostPreviewDto, PostsDto } from './dto/posts.dto';
+import { PostDto } from './dto/post.dto';
+import { SuccessDto } from './dto/success.dto';
+import { ProductType } from './dto/product.type';
 
 @Injectable()
 export class AppService {
   constructor(
+    @InjectRepository(ProductEntity)
+    private productRepository: Repository<ProductEntity>,
     @InjectRepository(PostEntity)
     private postRepository: Repository<PostEntity>,
   ) {}
-  
 
+  // Методи для роботи з продуктами
+
+  public async addProduct(product: NewProductDto): Promise<SuccessDto> {
+    const productEntity = new ProductEntity()
+    productEntity.title = product.title
+    productEntity.description = product.description
+    productEntity.category = product.category
+    productEntity.discountPercentage = product.discountPercentage
+    productEntity.price = product.price
+    productEntity.rating = product.rating
+    productEntity.stock = product.stock
+    productEntity.thumbnail = product.thumbnail
+    await this.productRepository.save(productEntity)
+    return new SuccessDto()
+  }
+
+  public async getProduct(id: number): Promise<ProductType> {
+    return this.productRepository.findOne({ where: { id } });
+  }
+
+  public async getAllProducts(): Promise<ProductType[]> {
+    return this.productRepository.find();
+  }
+
+  public async updateProduct(id: number, product: NewProductDto): Promise<SuccessDto> {
+    await this.productRepository.update(id, product);
+    return new SuccessDto();
+  }
+
+  public async deleteProduct(id: number): Promise<SuccessDto> {
+    await this.productRepository.delete(id);
+    return new SuccessDto();
+  }
+  // Методи для роботи з постами
   public async newPost(post: NewPostDto): Promise<SuccessDto> {
     const postEntity = new PostEntity()
     postEntity.title = post.title

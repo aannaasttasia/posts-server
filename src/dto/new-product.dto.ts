@@ -1,12 +1,8 @@
 export class NewProductDto {
     title: string;
     description: string;
-    price: string;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
+    price: BigInt;
     category: string;
-    brand: string;
     thumbnail: string;
-  }
+}
   

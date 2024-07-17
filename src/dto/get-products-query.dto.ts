@@ -1,4 +1,4 @@
-export class GetPostsQueryDto {
+export class GetProductsQueryDto {
     offset: number;
     count: number;
 }

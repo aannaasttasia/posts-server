@@ -1,16 +1,20 @@
+// support-history.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class PostEntity {
+export class SupportHistoryEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  userId: number;
+
+  @Column()
+  email: string;
+
   @Column()
   description: string;
+
   @Column()
-  details: string;
-  @Column()
-  image: string;
+  date: Date;
 }

@@ -16,6 +16,6 @@ export class OrderEntity {
   @Column("simple-array")
   products: ProductEntity[];
 
-  @Column('decimal', { precision: 10, scale: 2 })
-  totalPrice: string;
+  @Column()
+  totalPrice: number;
 }

@@ -1,4 +1,5 @@
 // user.entity.ts
+import { IsEmail } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
@@ -21,6 +22,6 @@ export class UserEntity {
   @Column()
   email: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
-  balance: string;
+  @Column({default: 0})
+  balance: number;
 }

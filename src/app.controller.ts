@@ -2,62 +2,145 @@ import { Body, Controller, Delete, Get, Post, Query, Put, Param } from '@nestjs/
 import { AppService } from './app.service';
 import { SuccessDto } from './dto/success.dto';
 import { NewProductDto } from './dto/new-product.dto';
+import { NewUserDto } from './dto/new-user.dto';
+import { UserDto } from './dto/user.dto';
+import { NewCategoryDto } from './dto/new-category.dto';
+import { ProductDto } from './dto/product.dto';
+import { CategoryDto } from './dto/category.dto';
+import { NewAdminDto } from './dto/new-admin.dto';
+import { NewOrderDto } from './dto/new-order.dto';
+import { NewPasswordDto } from './dto/new-password.dto';
+import { NewProductItemDto } from './dto/new-product-item.dto';
+import { NewSupportHistoryDto } from './dto/new-support-history.dto';
+import { AdminDto } from './dto/admin.dto';
+import { OrderDto } from './dto/order.dto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService) {}
 
-  // Методи для роботи з постами
+    // методи для користувачів
 
-  // @Get('posts')
-  // getPosts(@Query() params: GetPostsQueryDto): Promise<PostsDto> {
-  //   return this.appService.posts(params);
-  // }
+    @Post('user/new')
+    newUser(@Body() body: NewUserDto): Promise<SuccessDto>{
+        console.log(body)
+        return this.appService.newUser(body)
+    }
 
-  // @Get('post')
-  // getPost(@Query() params: {id: number}): Promise<PostDto> {
-  //   return this.appService.post(params.id);
-  // }
+    @Get('users')
+    getUsers(): Promise<UserDto[]>{
+        return this.appService.getUsers()
+    }
 
-  // @Post('new')
-  // newPost(@Body() body: NewPostDto): Promise<SuccessDto> {
-  //   console.log(body);
-  //   return this.appService.newPost(body);
-  // }
+    @Get('user/:id')
+    getUser(@Param() params: {id: number}): Promise<UserDto>{
+        return this.appService.getUser(params.id)
+    }
 
-  // @Delete('post/:id')
-  // deletePost(@Param() params: {id: number}): Promise<SuccessDto> {
-  //   return this.appService.delete(params.id);
-  // }
+    @Delete('user/:id')
+    deleteUser(@Param('id') id: number): Promise<SuccessDto> {
+        return this.appService.deleteUser(id);
+    }
 
-  // @Post('update/:id')
-  // updatePost(@Param() params: {id: number}, @Body() post: NewPostDto): Promise<SuccessDto> {
-  //   console.log('here', post);
-  //   return this.appService.put(post, params.id);
-  // }
+    
+    // методи для категорій
 
-  // @Get('products')
-  // getProducts(): Promise<ProductType[]> {
-  //   return this.appService.getAllProducts();
-  // }
+    @Post('category/new')
+    newCategory(@Body() body: NewCategoryDto): Promise<SuccessDto>{
+        return this.appService.newCategory(body)
+    }
 
-  // @Get('product/:id')
-  // getProduct(@Param('id') id: number): Promise<ProductType> {
-  //   return this.appService.getProduct(id);
-  // }
+    @Get('categories')
+    getCategories(): Promise<CategoryDto[]>{
+        return this.appService.getCategories()
+    }
 
-  // @Post('product/new')
-  // addProduct(@Body() product: NewProductDto): Promise<SuccessDto> {
-  //   return this.appService.addProduct(product);
-  // }
+    @Get('category/:id')
+    getCategory(@Param() params: {id: number}): Promise<CategoryDto>{
+        return this.appService.getCategory(params.id)
+    }
 
-  // @Put('product/:id')
-  // updateProduct(@Param('id') id: number, @Body() product: NewProductDto): Promise<SuccessDto> {
-  //   return this.appService.updateProduct(id, product);
-  // }
 
-  // @Delete('product/:id')
-  // deleteProduct(@Param('id') id: number): Promise<SuccessDto> {
-  //   return this.appService.deleteProduct(id);
-  // }
+    // методи для продуктів
+
+    @Post('product/new')
+    newProduct(@Body() body: NewProductDto): Promise<SuccessDto>{
+        return this.appService.newProduct(body)
+    }
+
+    @Get('products')
+    getProducts(): Promise<ProductDto[]>{
+        return this.appService.getProducts()
+    }
+
+    @Get('product/:id')
+    getProduct(@Param() params: {id: number}): Promise<ProductDto>{
+        return this.appService.getProduct(params.id)
+    }
+
+    @Delete('product/:id')
+    deleteProduct(@Param('id') id: number): Promise<SuccessDto>{
+        return this.appService.deleteProduct(id)
+    }
+
+    // методи для адмінів
+
+    @Post('admin/new')
+    newAdmin(@Body() body: NewAdminDto): Promise<SuccessDto>{
+        return this.appService.newAdmin(body)
+    }
+
+    @Get('admins')
+    getAdmins(): Promise<AdminDto[]>{
+        return this.appService.getAdmins()
+    }
+    
+    
+    // методи для історії замовлень 
+
+    @Post('order/new')
+    newOrder(@Body() body: NewOrderDto): Promise<SuccessDto>{
+        return this.appService.newOrder(body)
+    }
+
+    @Get('orders')
+    getOrders(): Promise<OrderDto[]>{
+        return this.appService.getOrders()
+    }
+
+
+    // методи для паролів
+
+    @Post('password/new')
+    newPassword(@Body() body: NewPasswordDto): Promise<SuccessDto>{
+        return this.appService.newPassword(body)
+    }
+
+    @Get('password')
+    getPassword(@Query() params: {userId: number}){
+        return this.appService.getPassword(params.userId)
+    }
+
+
+    // методи для кількості продуктів в кошику
+
+    @Post('productItem/new')
+    newProductItem(@Body() body: NewProductItemDto): Promise<SuccessDto>{
+        return this.appService.newProductItem(body)
+    }
+
+    
+    // методи для підтримки
+
+    @Post('supportHistory/new')
+    newSupportHistory(@Body() body: NewSupportHistoryDto): Promise<SuccessDto>{
+        return this.appService.newSupportHistory(body)
+    }
+
+
 }
+
+ // @Get('user/:id')
+  // getUser(@Param('id') id: number): Promise<UserDto>{
+  //   return this.appService.getUser(id)
+  // }

@@ -7,9 +7,6 @@ export class AdminEntity {
   id: number;
 
   @Column()
-  userId: number;
-
-  @Column()
   name: string;
 
   @Column()

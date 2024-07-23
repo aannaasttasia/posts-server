@@ -1,4 +1,4 @@
-import { ProductDto } from "./product.dto";
+import { ProductDto } from "src/products/dto/product.dto";
 
 export class OrderDto{
     id: number;

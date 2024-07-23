@@ -1,5 +1,4 @@
 // user.entity.ts
-import { IsEmail } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()

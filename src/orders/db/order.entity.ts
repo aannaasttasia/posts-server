@@ -1,6 +1,6 @@
 // order.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { ProductEntity } from './product.entity';
+import { ProductEntity } from 'src/products/db/product.entity';
 
 @Entity()
 export class OrderEntity {

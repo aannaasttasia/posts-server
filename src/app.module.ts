@@ -1,16 +1,22 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductEntity } from './db/product.entity';
+import { ProductEntity } from './products/db/product.entity';
 import { ConfigModule } from '@nestjs/config';
-import { UserEntity } from './db/user.entity';
-import { CategoryEntity } from './db/category.entity';
-import { AdminEntity } from './db/admin.entity';
-import { OrderEntity } from './db/order.entity';
-import { PasswordEntity } from './db/password.entity';
-import { ProductItemEntity } from './db/product-item.entity';
-import { SupportHistoryEntity } from './db/support-history.entity';
+import { UserEntity } from './users/db/user.entity';
+import { CategoryEntity } from './products/db/category.entity';
+import { AdminEntity } from './admins/db/admin.entity';
+import { OrderEntity } from './orders/db/order.entity';
+import { PasswordEntity } from './passwords/db/password.entity';
+import { ProductItemEntity } from './products/db/product-item.entity';
+import { SupportHistoryEntity } from './support-history/db/support-history.entity';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { ProductsModule } from './products/products.module';
+import { AdminsModule } from './admins/admins.module';
+import { OrdersModule } from './orders/orders.module';
+import { SupportHistoryModule } from './support-history/support-history.module';
+import { PasswordsModule } from './passwords/passwords.module';
+
 
 
 @Module({
@@ -26,9 +32,16 @@ import { SupportHistoryEntity } from './db/support-history.entity';
       entities: [UserEntity, ProductEntity, CategoryEntity, AdminEntity, OrderEntity, PasswordEntity, ProductItemEntity, SupportHistoryEntity],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([UserEntity, ProductEntity, CategoryEntity, AdminEntity, OrderEntity, PasswordEntity, ProductItemEntity, SupportHistoryEntity])
+    TypeOrmModule.forFeature([UserEntity, ProductEntity, CategoryEntity, AdminEntity, OrderEntity, PasswordEntity, ProductItemEntity, SupportHistoryEntity]),
+    UsersModule,
+    AuthModule,
+    ProductsModule,
+    AdminsModule,
+    OrdersModule,
+    SupportHistoryModule,
+    PasswordsModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  // controllers: [AppController,],
+  // providers: [AppService],
 })
 export class AppModule {}

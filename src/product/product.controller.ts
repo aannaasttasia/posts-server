@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Param, Post, Get } from '@nestjs/common';
-import { ProductsService } from './products.service';
+import { ProductService } from './product.service';
 import { NewCategoryDto } from './dto/new-category.dto';
 import { SuccessDto } from 'src/common/dto/success.dto';
 import { CategoryDto } from './dto/category.dto';
@@ -8,10 +8,10 @@ import { ProductDto } from './dto/product.dto';
 import { NewProductItemDto } from './dto/new-product-item.dto';
 
 @Controller()
-export class ProductsController {
-    constructor(private readonly productsService: ProductsService) {}
+export class ProductController {
+    constructor(private readonly productsService: ProductService) {}
 
-    // методи для категорій
+    // category methods
 
     @Post('category/new')
     newCategory(@Body() body: NewCategoryDto): Promise<SuccessDto>{
@@ -29,7 +29,7 @@ export class ProductsController {
     }
 
 
-    // методи для продуктів
+    // product methods
 
     @Post('product/new')
     newProduct(@Body() body: NewProductDto): Promise<SuccessDto>{
@@ -52,7 +52,7 @@ export class ProductsController {
     }
 
 
-    // методи для кількості продуктів в кошику
+    // product from the cart methods
 
     @Post('productItem/new')
     newProductItem(@Body() body: NewProductItemDto): Promise<SuccessDto>{

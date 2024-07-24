@@ -12,7 +12,7 @@ export class SupportHistoryService {
         private supportHistoryRepository: Repository<SupportHistoryEntity>,
     ){}
 
-    // методи для підтримки
+    // support methods
 
     public async newSupportHistory(support: NewSupportHistoryDto): Promise<SuccessDto>{
         const supportHistoryEntity = new SupportHistoryEntity()

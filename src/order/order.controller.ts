@@ -1,21 +1,21 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { OrdersService } from './orders.service';
+import { OrderService } from './order.service';
 import { NewOrderDto } from './dto/new-order.dto';
 import { SuccessDto } from 'src/common/dto/success.dto';
 import { OrderDto } from './dto/order.dto';
 
-@Controller()
-export class OrdersController {
-    constructor(private readonly ordersService: OrdersService){}
+@Controller("order")
+export class OrderController {
+    constructor(private readonly ordersService: OrderService){}
 
-    // методи для історії замовлень 
+    // order methods 
 
-    @Post('order/new')
+    @Post('new')
     newOrder(@Body() body: NewOrderDto): Promise<SuccessDto>{
         return this.ordersService.newOrder(body)
     }
 
-    @Get('orders')
+    @Get()
     getOrders(): Promise<OrderDto[]>{
         return this.ordersService.getOrders()
     }

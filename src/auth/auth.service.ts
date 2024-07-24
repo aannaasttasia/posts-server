@@ -1,19 +1,43 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
+import { UserService } from 'src/user/user.service';
+import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PasswordEntity } from 'src/user/db/password.entity';
+import { Repository } from 'typeorm';
+import { EncryptionService } from 'src/encryption/encryption.service';
+import { PasswordDto } from 'src/user/dto/password.dto';
+
 
 @Injectable()
 export class AuthService {
     constructor(
-        private readonly usersService: UsersService,
+        @InjectRepository(PasswordEntity)
+        private passwordRepository: Repository<PasswordEntity>,
+
+        private readonly encryptionService: EncryptionService
     ) {}
 
-    async signIn(username: string, pass: string): Promise<any> {
-        // const user = await this.usersService.findOne(username);
-        // if (user?.password !== pass) {
-        //   throw new UnauthorizedException();
-        // }
-        // const { password, ...result } = user;
-        // return result;
-      }
+    async signIn(userId: number, pass: string): Promise<any> {
+        const user = await this.passwordRepository.findOne({where: {userId}});
+        if (!user) {
+            throw new UnauthorizedException('User not found');
+        }
+        if (!await this.encryptionService.comparePasswords(pass, user.passwordHash)) {
+            throw new UnauthorizedException('Invalid credentials');
+        }
+        const { passwordHash, ...result } = user;
+        return result;
+    }
+
+    public async getPasswords(): Promise<PasswordDto[]>{
+        return (await this.passwordRepository.find()).map(p=>({
+            userId: p.userId,
+            email: p.email,
+            passwordHash: p.passwordHash,
+            isAdmin: p.isAdmin
+        }))
+    }
+    
     
 }

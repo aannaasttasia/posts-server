@@ -7,13 +7,13 @@ import { SuccessDto } from 'src/common/dto/success.dto';
 import { OrderDto } from './dto/order.dto';
 
 @Injectable()
-export class OrdersService {
+export class OrderService {
     constructor(
         @InjectRepository(OrderEntity)
         private orderRepository: Repository<OrderEntity>,
     ){}
 
-    // методи для історії замовлень 
+    // order methods 
 
     public async newOrder(order: NewOrderDto): Promise<SuccessDto>{
         const orderEntity = new OrderEntity()

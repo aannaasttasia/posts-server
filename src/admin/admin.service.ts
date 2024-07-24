@@ -7,13 +7,13 @@ import { SuccessDto } from 'src/common/dto/success.dto';
 import { AdminDto } from './dto/admin.dto';
 
 @Injectable()
-export class AdminsService {
+export class AdminService {
     constructor(
         @InjectRepository(AdminEntity)
         private adminRepository: Repository<AdminEntity>,
     ){}
 
-    // методи для адмінів
+    // admin methods
   
     public async newAdmin(admin: NewAdminDto): Promise<SuccessDto>{
         const adminEntity = new AdminEntity()

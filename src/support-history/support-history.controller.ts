@@ -3,14 +3,14 @@ import { SupportHistoryService } from './support-history.service';
 import { NewSupportHistoryDto } from './dto/new-support-history.dto';
 import { SuccessDto } from 'src/common/dto/success.dto';
 
-@Controller()
+@Controller("supportHistory")
 export class SupportHistoryController {
 
     constructor(private readonly supportHistoryService: SupportHistoryService){}
     
-    // методи для підтримки
+    // support methods
 
-    @Post('supportHistory/new')
+    @Post('new')
     newSupportHistory(@Body() body: NewSupportHistoryDto): Promise<SuccessDto>{
         return this.supportHistoryService.newSupportHistory(body)
     }

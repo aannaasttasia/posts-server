@@ -1,17 +1,18 @@
-import { Controller, Delete, Param, Get, Post, Body } from '@nestjs/common';
-import { NewUserDto } from 'src/users/dto/new-user.dto';
+import { Controller, Delete, Param, Get, Post, Body, Query } from '@nestjs/common';
+import { NewUserDto } from 'src/user/dto/new-user.dto';
 import { SuccessDto } from 'src/common/dto/success.dto';
-import { UsersService } from './users.service';
-import { UserDto } from 'src/users/dto/user.dto';
+import { UserService } from './user.service';
+import { UserDto } from 'src/user/dto/user.dto';
+import { NewPasswordDto } from './dto/new-password.dto';
 
 @Controller()
-export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+export class UserController {
+    constructor(private readonly usersService: UserService) {}
 
-    // методи для користувачів
+    // user methods
 
     @Post('user/new')
-    newUser(@Body() body: NewUserDto): Promise<SuccessDto>{
+    newUser(@Body() body: {user: NewUserDto, password:string}): Promise<SuccessDto>{
         return this.usersService.newUser(body)
     }
 
@@ -29,5 +30,8 @@ export class UsersController {
     deleteUser(@Param('id') id: number): Promise<SuccessDto> {
         return this.usersService.deleteUser(id);
     }
+    
+
 
 }
+

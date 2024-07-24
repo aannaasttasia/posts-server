@@ -1,5 +1,5 @@
 import { IsDate } from "class-validator";
-import { ProductDto } from "src/products/dto/product.dto";
+import { ProductDto } from "src/product/dto/product.dto";
 
 export class NewOrderDto{
     userId: number;

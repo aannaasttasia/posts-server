@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserModule } from 'src/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PasswordEntity } from 'src/user/db/password.entity';
+import { PasswordEntity } from 'src/auth/db/password.entity';
 import { EncryptionModule } from 'src/encryption/encryption.module';
 
 

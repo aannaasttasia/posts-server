@@ -3,10 +3,10 @@ import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PasswordEntity } from 'src/user/db/password.entity';
+import { PasswordEntity } from 'src/auth/db/password.entity';
 import { Repository } from 'typeorm';
 import { EncryptionService } from 'src/encryption/encryption.service';
-import { PasswordDto } from 'src/user/dto/password.dto';
+import { PasswordDto } from 'src/auth/dto/password.dto';
 
 
 @Injectable()

@@ -6,7 +6,7 @@ import { UserEntity } from './user/db/user.entity';
 import { CategoryEntity } from './product/db/category.entity';
 import { AdminEntity } from './admin/db/admin.entity';
 import { OrderEntity } from './order/db/order.entity';
-import { PasswordEntity } from './user/db/password.entity';
+import { PasswordEntity } from './auth/db/password.entity';
 import { ProductItemEntity } from './product/db/product-item.entity';
 import { SupportHistoryEntity } from './support-history/db/support-history.entity';
 import { UserModule } from './user/user.module';
@@ -16,6 +16,8 @@ import { AdminModule } from './admin/admin.module';
 import { OrderModule } from './order/order.module';
 import { SupportHistoryModule } from './support-history/support-history.module';
 import { EncryptionModule } from './encryption/encryption.module';
+import { PaymentService } from './payment/payment.service';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -37,7 +39,9 @@ import { EncryptionModule } from './encryption/encryption.module';
     OrderModule,
     SupportHistoryModule,
     EncryptionModule,
+    PaymentModule,
   ],
+  providers: [PaymentService],
 
 })
 export class AppModule {}

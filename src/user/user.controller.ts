@@ -3,7 +3,7 @@ import { NewUserDto } from 'src/user/dto/new-user.dto';
 import { SuccessDto } from 'src/common/dto/success.dto';
 import { UserService } from './user.service';
 import { UserDto } from 'src/user/dto/user.dto';
-import { NewPasswordDto } from './dto/new-password.dto';
+import { NewPasswordDto } from '../auth/dto/new-password.dto';
 
 @Controller()
 export class UserController {

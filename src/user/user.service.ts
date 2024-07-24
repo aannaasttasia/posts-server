@@ -5,10 +5,7 @@ import { NewUserDto } from 'src/user/dto/new-user.dto';
 import { SuccessDto } from 'src/common/dto/success.dto';
 import { UserDto } from 'src/user/dto/user.dto';
 import { Repository } from 'typeorm';
-import { PasswordEntity } from './db/password.entity';
-import { NewPasswordDto } from './dto/new-password.dto';
-import { PasswordDto } from './dto/password.dto';
-import * as bcrypt from 'bcrypt';
+import { PasswordEntity } from '../auth/db/password.entity';
 import { EncryptionService } from 'src/encryption/encryption.service';
 
 @Injectable()
@@ -65,5 +62,6 @@ export class UserService {
       await this.userRepository.delete(id)
       return new SuccessDto()
     }
+
 
 }

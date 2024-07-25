@@ -6,4 +6,7 @@ export class NewSupportHistoryDto{
     email: string;
     description: string;
     date: Date;
+    constructor() {
+        this.date = new Date(); 
+    }
 }

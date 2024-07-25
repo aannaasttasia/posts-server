@@ -16,7 +16,7 @@ export class SupportHistoryService {
 
     public async newSupportHistory(support: NewSupportHistoryDto): Promise<SuccessDto>{
         const supportHistoryEntity = new SupportHistoryEntity()
-        supportHistoryEntity.date = support.date
+        supportHistoryEntity.date = support.date || new Date()
         supportHistoryEntity.description = support.description
         supportHistoryEntity.email = support.email
         supportHistoryEntity.userId = support.userId

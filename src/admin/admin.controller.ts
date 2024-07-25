@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Query, Param } from '@nestjs/common';
+import { Body, Controller, Post, Get, Query, Param, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { SuccessDto } from 'src/common/dto/success.dto';
 import { NewAdminDto } from './dto/new-admin.dto';
@@ -6,8 +6,10 @@ import { AdminDto } from './dto/admin.dto';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { UserEntity } from 'src/user/db/user.entity';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller("admin")
+@UseGuards(AuthGuard) 
 export class AdminController {
     constructor(
         private readonly adminsServise: AdminService,

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AdminEntity } from './db/admin.entity';
 import { Repository } from 'typeorm';
@@ -27,6 +27,10 @@ export class AdminService {
     // admin methods
   
     public async newAdmin({admin, password}:{admin: NewAdminDto, password: string}): Promise<SuccessDto>{
+        const existingAdmin = await this.adminRepository.findOne({ where: { email: admin.email } })
+        if (existingAdmin) {
+            throw new ConflictException('An account with this email address already exists');
+        }
         const adminEntity = new AdminEntity()
         adminEntity.email = admin.email
         adminEntity.name = admin.name

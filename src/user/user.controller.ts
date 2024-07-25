@@ -30,8 +30,6 @@ export class UserController {
     deleteUser(@Param('id') id: number): Promise<SuccessDto> {
         return this.usersService.deleteUser(id);
     }
-    
-
 
 }
 

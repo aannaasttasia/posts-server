@@ -9,7 +9,6 @@ import { UserEntity } from 'src/user/db/user.entity';
 import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller("admin")
-@UseGuards(AuthGuard) 
 export class AdminController {
     constructor(
         private readonly adminsServise: AdminService,

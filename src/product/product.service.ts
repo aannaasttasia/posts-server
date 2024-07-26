@@ -75,8 +75,8 @@ export class ProductService {
   }
 
   public async deleteProduct(id: number): Promise<SuccessDto> {
-    await this.productRepository.delete(id);
-    return new SuccessDto();
+    await this.productRepository.delete(id)
+    return new SuccessDto()
   }
 
   // product from the cart methods

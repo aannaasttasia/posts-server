@@ -5,14 +5,14 @@ import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
 @Unique(['email'])
 export class AdminEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+    id: number;
 
   @Column()
-  name: string;
+    name: string;
 
   @Column()
-  surname: string;
+    surname: string;
 
   @Column()
-  email: string;
+    email: string;
 }

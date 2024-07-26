@@ -4,17 +4,17 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class SupportHistoryEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+    id: number;
 
   @Column()
-  userId: number;
+    userId: number;
 
   @Column()
-  email: string;
+    email: string;
 
   @Column()
-  description: string;
+    description: string;
 
   @Column()
-  date: Date;
+    date: Date;
 }

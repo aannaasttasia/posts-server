@@ -6,5 +6,5 @@ export class NewOrderDto {
   totalPrice: number;
   products: ProductDto[];
   @IsDate()
-  date: Date;
+    date: Date;
 }

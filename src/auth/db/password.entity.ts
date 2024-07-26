@@ -4,14 +4,14 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class PasswordEntity {
   @PrimaryGeneratedColumn()
-  userId: number;
+    userId: number;
 
   @Column()
-  email: string;
+    email: string;
 
   @Column()
-  passwordHash: string;
+    passwordHash: string;
 
   @Column()
-  isAdmin: boolean;
+    isAdmin: boolean;
 }

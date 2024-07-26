@@ -22,9 +22,6 @@
     "prepare": "husky install",
     "lint-all": "eslint --ext .ts,.tsx,.js --fix"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": "prettier --write"
-  },
   "dependencies": {
     "-": "^0.0.1",
     "@nestjs/common": "10.2.1",

@@ -4,5 +4,5 @@ export class NewAdminDto {
   name: string;
   surname: string;
   @IsEmail()
-  email: string;
+    email: string;
 }

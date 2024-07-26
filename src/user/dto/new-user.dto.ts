@@ -5,7 +5,7 @@ export class NewUserDto {
   surname: string;
   address: string;
   @IsPhoneNumber('UA')
-  phoneNumber: string;
+    phoneNumber: string;
   @IsEmail()
-  email: string;
+    email: string;
 }

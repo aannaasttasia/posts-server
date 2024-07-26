@@ -13,7 +13,7 @@ import { NewProductItemDto } from './dto/new-product-item.dto';
 
 @Injectable()
 export class ProductService {
-    constructor( 
+  constructor(
     @InjectRepository(CategoryEntity)
     private categoryRepository: Repository<CategoryEntity>,
 
@@ -21,78 +21,73 @@ export class ProductService {
     private productRepository: Repository<ProductEntity>,
 
     @InjectRepository(ProductItemEntity)
-    private productItemRepository: Repository<ProductItemEntity>
-){}
+    private productItemRepository: Repository<ProductItemEntity>,
+  ) {}
 
-    // category methods
+  // category methods
 
-    public async newCategory(category: NewCategoryDto): Promise<SuccessDto>{
-        const categoryEntity = new CategoryEntity()
-        categoryEntity.name = category.name
-        await this.categoryRepository.save(categoryEntity)
+  public async newCategory(category: NewCategoryDto): Promise<SuccessDto> {
+    const categoryEntity = new CategoryEntity();
+    categoryEntity.name = category.name;
+    await this.categoryRepository.save(categoryEntity);
 
-        return new SuccessDto()
-    }
+    return new SuccessDto();
+  }
 
-    public async getCategories(): Promise<CategoryDto[]>{
-        return (await this.categoryRepository.find()).map(c=>({
-        id: c.id,
-        name: c.name
-        }))
-    }
+  public async getCategories(): Promise<CategoryDto[]> {
+    return (await this.categoryRepository.find()).map((c) => ({
+      id: c.id,
+      name: c.name,
+    }));
+  }
 
-    public async getCategory(id: number): Promise<CategoryDto>{
-        return await this.categoryRepository.findOne({where: { id }})
-    }
+  public async getCategory(id: number): Promise<CategoryDto> {
+    return await this.categoryRepository.findOne({ where: { id } });
+  }
 
+  // product methods
 
-    // product methods
+  public async newProduct(product: NewProductDto): Promise<SuccessDto> {
+    const productEntity = new ProductEntity();
+    productEntity.category = product.category;
+    productEntity.description = product.description;
+    productEntity.price = product.price;
+    productEntity.thumbnail = product.thumbnail;
+    productEntity.title = product.title;
+    await this.productRepository.save(productEntity);
 
-    public async newProduct(product: NewProductDto): Promise<SuccessDto>{
-        const productEntity = new ProductEntity()
-        productEntity.category = product.category
-        productEntity.description = product.description
-        productEntity.price = product.price
-        productEntity.thumbnail = product.thumbnail
-        productEntity.title = product.title
-        await this.productRepository.save(productEntity)
+    return new SuccessDto();
+  }
 
-        return new SuccessDto()
-    }
+  public async getProducts(): Promise<ProductDto[]> {
+    return (await this.productRepository.find()).map((p) => ({
+      id: p.id,
+      title: p.title,
+      description: p.description,
+      price: p.price,
+      category: p.category,
+      thumbnail: p.thumbnail,
+    }));
+  }
 
-    public async getProducts(): Promise<ProductDto[]>{
-        return (await this.productRepository.find()).map(p=>({
-        id: p.id,
-        title: p.title,
-        description: p.description,
-        price: p.price,
-        category: p.category,
-        thumbnail: p.thumbnail
-        }))
-    }
+  public async getProduct(id: number): Promise<ProductDto> {
+    return await this.productRepository.findOne({ where: { id } });
+  }
 
-    public async getProduct(id: number): Promise<ProductDto>{
-        return await this.productRepository.findOne({where: { id }})
-    }
+  public async deleteProduct(id: number): Promise<SuccessDto> {
+    await this.productRepository.delete(id);
+    return new SuccessDto();
+  }
 
-    public async deleteProduct(id: number): Promise<SuccessDto>{
-        await this.productRepository.delete(id)
-        return new SuccessDto()
-    }
-    
-    
-    // product from the cart methods
+  // product from the cart methods
 
-    public async newProductItem(item: NewProductItemDto): Promise<SuccessDto>{
-        const productItemEntity = new ProductItemEntity()
-        productItemEntity.productId = item.productId
-        productItemEntity.quantity = item.quantity
-        await this.productItemRepository.save(productItemEntity)
-        return new SuccessDto()
-    }
+  public async newProductItem(item: NewProductItemDto): Promise<SuccessDto> {
+    const productItemEntity = new ProductItemEntity();
+    productItemEntity.productId = item.productId;
+    productItemEntity.quantity = item.quantity;
+    await this.productItemRepository.save(productItemEntity);
+    return new SuccessDto();
+  }
 
-    public async getProductItem(){
-        
-    }
-
+  public async getProductItem() {}
 }

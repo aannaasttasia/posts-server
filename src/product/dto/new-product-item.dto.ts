@@ -1,4 +1,4 @@
-export class NewProductItemDto{
-    productId: number;
-    quantity: number;
+export class NewProductItemDto {
+  productId: number;
+  quantity: number;
 }

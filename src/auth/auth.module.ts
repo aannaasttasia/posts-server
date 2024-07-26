@@ -8,19 +8,18 @@ import { EncryptionModule } from 'src/encryption/encryption.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 
-
 @Module({
-    imports:[
-        UserModule, 
-        TypeOrmModule.forFeature([PasswordEntity]),
-        EncryptionModule,
-        JwtModule.register({
-            global: true,
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: '60s' },
-        }),
-    ],
-    providers: [AuthService],
-    controllers: [AuthController]
+  imports: [
+    UserModule,
+    TypeOrmModule.forFeature([PasswordEntity]),
+    EncryptionModule,
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
+  providers: [AuthService],
+  controllers: [AuthController],
 })
 export class AuthModule {}

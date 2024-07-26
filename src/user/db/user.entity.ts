@@ -1,8 +1,8 @@
 // user.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-// @Unique(['email']) 
+// @Unique(['email'])
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -22,6 +22,6 @@ export class UserEntity {
   @Column()
   email: string;
 
-  @Column({default: 0})
+  @Column({ default: 0 })
   balance: number;
 }

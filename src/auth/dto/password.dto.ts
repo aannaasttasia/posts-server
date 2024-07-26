@@ -1,6 +1,6 @@
-export class PasswordDto{
-    userId: number;
-    email: string;
-    passwordHash: string;
-    isAdmin: boolean
+export class PasswordDto {
+  userId: number;
+  email: string;
+  passwordHash: string;
+  isAdmin: boolean;
 }

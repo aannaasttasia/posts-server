@@ -4,20 +4,19 @@ import { NewOrderDto } from './dto/new-order.dto';
 import { SuccessDto } from 'src/common/dto/success.dto';
 import { OrderDto } from './dto/order.dto';
 
-@Controller("order")
+@Controller('order')
 export class OrderController {
-    constructor(private readonly ordersService: OrderService){}
+  constructor(private readonly ordersService: OrderService) {}
 
-    // order methods 
+  // order methods
 
-    @Post('new')
-    newOrder(@Body() body: NewOrderDto): Promise<SuccessDto>{
-        return this.ordersService.newOrder(body)
-    }
+  @Post('new')
+  newOrder(@Body() body: NewOrderDto): Promise<SuccessDto> {
+    return this.ordersService.newOrder(body);
+  }
 
-    @Get()
-    getOrders(): Promise<OrderDto[]>{
-        return this.ordersService.getOrders()
-    }
-
+  @Get()
+  getOrders(): Promise<OrderDto[]> {
+    return this.ordersService.getOrders();
+  }
 }

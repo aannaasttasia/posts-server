@@ -8,5 +8,4 @@ export class ProductItemEntity {
 
   @Column()
   quantity: number;
-
 }

@@ -13,7 +13,7 @@ export class ProductEntity {
   description: string;
 
   @Column('decimal', { precision: 10, scale: 2 })
-  price: BigInt;
+  price: bigint;
 
   @Column({ nullable: true })
   category: string;

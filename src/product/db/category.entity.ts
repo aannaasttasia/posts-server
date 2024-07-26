@@ -8,5 +8,4 @@ export class CategoryEntity {
 
   @Column()
   name: string;
-
 }

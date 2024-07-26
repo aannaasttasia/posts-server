@@ -1,8 +1,8 @@
-import { IsEmail } from "class-validator";
+import { IsEmail } from 'class-validator';
 
-export class NewAdminDto{
-    name: string;
-    surname: string;
-    @IsEmail()
-    email: string;
+export class NewAdminDto {
+  name: string;
+  surname: string;
+  @IsEmail()
+  email: string;
 }

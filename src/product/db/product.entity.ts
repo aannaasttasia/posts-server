@@ -4,20 +4,20 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class ProductEntity {
   @PrimaryGeneratedColumn()
-    id: number;
+      id: number;
 
   @Column()
-    title: string;
+      title: string;
 
   @Column()
-    description: string;
+      description: string;
 
   @Column('decimal', { precision: 10, scale: 2 })
     price: number;
 
   @Column({ nullable: true })
-    category: string;
+      category: string;
 
   @Column()
-    thumbnail: string;
+      thumbnail: string;
 }

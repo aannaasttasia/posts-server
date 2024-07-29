@@ -5,17 +5,17 @@ import { ProductItemEntity } from 'src/product/db/product-item.entity';
 @Entity()
 export class OrderEntity {
   @PrimaryGeneratedColumn()
-    id: number;
+      id: number;
 
   @Column()
-    usedId: number;
+      usedId: number;
 
   @Column()
-    date: Date;
+      date: Date;
 
   @Column('simple-array')
     products: ProductItemEntity[];
 
   @Column()
-    totalPrice: number;
+      totalPrice: number;
 }

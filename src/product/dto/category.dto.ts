@@ -1,4 +1,4 @@
 export class CategoryDto {
-  id: number;
-  name: string;
+    id: number;
+    name: string;
 }

@@ -1,4 +1,4 @@
 export class GetProductsQueryDto {
-  offset: number;
-  count: number;
+    offset: number;
+    count: number;
 }

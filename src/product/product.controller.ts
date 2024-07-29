@@ -1,11 +1,11 @@
 import {
-  Body,
-  Controller,
-  Delete,
-  Param,
-  Post,
-  Get,
-  UseGuards,
+    Body,
+    Controller,
+    Delete,
+    Param,
+    Post,
+    Get,
+    UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { NewCategoryDto } from './dto/new-category.dto';
@@ -18,24 +18,24 @@ import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller()
 export class ProductController {
-  constructor(private readonly productsService: ProductService) {}
+    constructor(private readonly productsService: ProductService) {}
 
-  // category methods
+    // category methods
 
   @Post('category/new')
   @UseGuards(AuthGuard)
-  newCategory(@Body() body: NewCategoryDto): Promise<SuccessDto> {
-    return this.productsService.newCategory(body);
-  }
+    newCategory(@Body() body: NewCategoryDto): Promise<SuccessDto> {
+        return this.productsService.newCategory(body);
+    }
 
   @Get('categories')
   getCategories(): Promise<CategoryDto[]> {
-    return this.productsService.getCategories();
+      return this.productsService.getCategories();
   }
 
   @Get('category/:id')
   getCategory(@Param() params: { id: number }): Promise<CategoryDto> {
-    return this.productsService.getCategory(params.id);
+      return this.productsService.getCategory(params.id);
   }
 
   // product methods
@@ -43,22 +43,22 @@ export class ProductController {
   @Post('product/new')
   @UseGuards(AuthGuard)
   newProduct(@Body() body: NewProductDto): Promise<SuccessDto> {
-    return this.productsService.newProduct(body);
+      return this.productsService.newProduct(body);
   }
 
   @Get('products')
   getProducts(): Promise<ProductDto[]> {
-    return this.productsService.getProducts();
+      return this.productsService.getProducts();
   }
 
   @Get('product/:id')
   getProduct(@Param() params: { id: number }): Promise<ProductDto> {
-    return this.productsService.getProduct(params.id);
+      return this.productsService.getProduct(params.id);
   }
 
   @Delete('product/:id')
   deleteProduct(@Param('id') id: number): Promise<SuccessDto> {
-    return this.productsService.deleteProduct(id);
+      return this.productsService.deleteProduct(id);
   }
 
   // product from the cart methods

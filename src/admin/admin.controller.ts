@@ -6,20 +6,20 @@ import { AdminDto } from './dto/admin.dto';
 
 @Controller('admin')
 export class AdminController {
-  constructor(private readonly adminsServise: AdminService) {}
+    constructor(private readonly adminsServise: AdminService) {}
 
-  // admin methods
+    // admin methods
 
   @Post('new')
-  newAdmin(
-    @Body() body: { admin: NewAdminDto; password: string },
-  ): Promise<SuccessDto> {
-    return this.adminsServise.newAdmin(body);
-  }
+    newAdmin(
+    @Body() admin: NewAdminDto,
+    ): Promise<SuccessDto> {
+        return this.adminsServise.newAdmin(admin);
+    }
 
   @Get()
   getAdmins(): Promise<AdminDto[]> {
-    return this.adminsServise.getAdmins();
+      return this.adminsServise.getAdmins();
   }
 
   @Post('increase/:userId')
@@ -27,6 +27,6 @@ export class AdminController {
     @Param('userId') userId: number,
     @Body() body: { amount: number },
   ) {
-    return this.adminsServise.increaseUserBalance(userId, body.amount);
+      return this.adminsServise.increaseUserBalance(userId, body.amount);
   }
 }

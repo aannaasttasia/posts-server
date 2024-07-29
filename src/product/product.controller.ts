@@ -13,7 +13,7 @@ import { SuccessDto } from 'src/common/dto/success.dto';
 import { CategoryDto } from './dto/category.dto';
 import { NewProductDto } from './dto/new-product.dto';
 import { ProductDto } from './dto/product.dto';
-import { NewProductItemDto } from './dto/new-product-item.dto';
+import { ProductItemDto } from './dto/product-item.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller()
@@ -64,7 +64,7 @@ export class ProductController {
   // product from the cart methods
 
   @Post('productItem/new')
-  newProductItem(@Body() body: NewProductItemDto): Promise<SuccessDto> {
+  newProductItem(@Body() body: ProductItemDto): Promise<SuccessDto> {
       return this.productsService.newProductItem(body);
   }
 }

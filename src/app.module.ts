@@ -13,10 +13,8 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { AdminModule } from './admin/admin.module';
-import { OrderModule } from './order/order.module';
 import { SupportHistoryModule } from './support-history/support-history.module';
 import { EncryptionModule } from './encryption/encryption.module';
-import { PaymentService } from './payment/payment.service';
 import { PaymentModule } from './payment/payment.module';
 
 @Module({
@@ -36,12 +34,9 @@ import { PaymentModule } from './payment/payment.module';
         AuthModule,
         ProductModule,
         AdminModule,
-        OrderModule,
         SupportHistoryModule,
         EncryptionModule,
         PaymentModule,
     ],
-    providers: [PaymentService],
-
 })
 export class AppModule {}

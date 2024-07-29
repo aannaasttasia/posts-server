@@ -1,6 +1,6 @@
 // order.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { ProductEntity } from 'src/product/db/product.entity';
+import { ProductItemEntity } from 'src/product/db/product-item.entity';
 
 @Entity()
 export class OrderEntity {
@@ -14,7 +14,7 @@ export class OrderEntity {
       date: Date;
 
   @Column('simple-array')
-      products: ProductEntity[];
+      products: ProductItemEntity[];
 
   @Column()
       totalPrice: number;

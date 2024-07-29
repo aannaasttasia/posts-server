@@ -23,8 +23,8 @@ export class UserController {
   }
 
   @Get('user/:id')
-  getUser(@Param() params: { id: number }): Promise<UserDto> {
-      return this.usersService.getUser(params.id);
+  getUser(@Param('id') id: number ): Promise<UserDto> {
+      return this.usersService.getUser(id);
   }
 
   @Delete('user/:id')

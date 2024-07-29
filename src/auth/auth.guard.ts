@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
       throw new ForbiddenException('Invalid token');
     }
 
-    if (payload.role !== true) {
+    if (payload.admin !== true) {
       throw new ForbiddenException(
         'You do not have permission to perform this action',
       );

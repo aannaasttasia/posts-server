@@ -26,13 +26,9 @@ export class AdminService {
 
   // admin methods
 
-  public async newAdmin({
-    admin,
-    password,
-  }: {
-    admin: NewAdminDto;
-    password: string;
-  }): Promise<SuccessDto> {
+  public async newAdmin(
+    admin: NewAdminDto
+  ): Promise<SuccessDto> {
     const existingAdmin = await this.adminRepository.findOne({
       where: { email: admin.email },
     });
@@ -40,22 +36,21 @@ export class AdminService {
       throw new ConflictException(
         'An account with this email address already exists',
       );
-    } else {
-      const adminEntity = new AdminEntity();
-      adminEntity.email = admin.email;
-      adminEntity.name = admin.name;
-      adminEntity.surname = admin.surname;
-      await this.adminRepository.save(adminEntity);
-
-      const passwordEntity = new PasswordEntity();
-      passwordEntity.email = admin.email;
-      passwordEntity.isAdmin = true;
-      passwordEntity.passwordHash =
-        await this.encryptionService.hashPassword(password);
-      passwordEntity.userId = adminEntity.id;
-      await this.passwordRepository.save(passwordEntity);
-      return new SuccessDto();
     }
+    const adminEntity = new AdminEntity();
+    adminEntity.email = admin.email;
+    adminEntity.name = admin.name;
+    adminEntity.surname = admin.surname;
+    await this.adminRepository.save(adminEntity);
+
+    const passwordEntity = new PasswordEntity();
+    passwordEntity.email = admin.email;
+    passwordEntity.isAdmin = true;
+    passwordEntity.passwordHash =
+    await this.encryptionService.hashPassword(admin.password);
+    passwordEntity.userId = adminEntity.id;
+    await this.passwordRepository.save(passwordEntity);
+    return new SuccessDto();
   }
 
   public async getAdmins(): Promise<AdminDto[]> {

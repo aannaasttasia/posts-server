@@ -12,9 +12,9 @@ export class AdminController {
 
   @Post('new')
   newAdmin(
-    @Body() body: { admin: NewAdminDto; password: string },
+    @Body() admin: NewAdminDto,
   ): Promise<SuccessDto> {
-    return this.adminsServise.newAdmin(body);
+    return this.adminsServise.newAdmin(admin);
   }
 
   @Get()

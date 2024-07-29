@@ -22,8 +22,8 @@ export class UserService {
     // user methods
 
     public async newUser(
-    user: NewUserDto
-  ): Promise<SuccessDto> {
+        user: NewUserDto
+    ): Promise<SuccessDto> {
         const existingAdmin = await this.userRepository.findOne({
             where: { email: user.email },
         });

@@ -24,7 +24,7 @@ export class UserController {
 
   @Get('user/:id')
   getUser(@Param('id') id: number ): Promise<UserDto> {
-    return this.usersService.getUser(id);
+      return this.usersService.getUser(id);
   }
 
   @Delete('user/:id')

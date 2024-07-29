@@ -65,6 +65,6 @@ export class ProductController {
 
   @Post('productItem/new')
   newProductItem(@Body() body: ProductItemDto): Promise<SuccessDto> {
-    return this.productsService.newProductItem(body);
+      return this.productsService.newProductItem(body);
   }
 }

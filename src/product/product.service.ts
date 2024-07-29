@@ -81,13 +81,13 @@ export class ProductService {
 
     // product from the cart methods
 
-  public async newProductItem(item: ProductItemDto): Promise<SuccessDto> {
-    const productItemEntity = new ProductItemEntity();
-    productItemEntity.productId = item.productId;
-    productItemEntity.quantity = item.quantity;
-    await this.productItemRepository.save(productItemEntity);
-    return new SuccessDto();
-  }
+    public async newProductItem(item: ProductItemDto): Promise<SuccessDto> {
+        const productItemEntity = new ProductItemEntity();
+        productItemEntity.productId = item.productId;
+        productItemEntity.quantity = item.quantity;
+        await this.productItemRepository.save(productItemEntity);
+        return new SuccessDto();
+    }
 
     public async getProductItem() {}
 }

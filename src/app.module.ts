@@ -18,25 +18,25 @@ import { EncryptionModule } from './encryption/encryption.module';
 import { PaymentModule } from './payment/payment.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.HOST,
-      port: +process.env.PORT,
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
-      entities: [UserEntity, ProductEntity, CategoryEntity, AdminEntity, OrderEntity, PasswordEntity, ProductItemEntity, SupportHistoryEntity],
-      synchronize: true,
-    }),
-    UserModule,
-    AuthModule,
-    ProductModule,
-    AdminModule,
-    SupportHistoryModule,
-    EncryptionModule,
-    PaymentModule,
-  ],
+    imports: [
+        ConfigModule.forRoot(),
+        TypeOrmModule.forRoot({
+            type: 'mysql',
+            host: process.env.HOST,
+            port: +process.env.PORT,
+            username: process.env.USERNAME,
+            password: process.env.PASSWORD,
+            database: process.env.DATABASE,
+            entities: [UserEntity, ProductEntity, CategoryEntity, AdminEntity, OrderEntity, PasswordEntity, ProductItemEntity, SupportHistoryEntity],
+            synchronize: true,
+        }),
+        UserModule,
+        AuthModule,
+        ProductModule,
+        AdminModule,
+        SupportHistoryModule,
+        EncryptionModule,
+        PaymentModule,
+    ],
 })
 export class AppModule {}

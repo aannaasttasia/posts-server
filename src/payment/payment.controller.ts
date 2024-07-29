@@ -5,11 +5,11 @@ import { SuccessDto } from 'src/common/dto/success.dto';
 
 @Controller('payment')
 export class PaymentController {
-  constructor(private readonly paymentService: PaymentService) {}
+    constructor(private readonly paymentService: PaymentService) {}
 
     @Post(':userId')
-  payForProducts(@Param('userId') userId: number, @Body() body: PaymentBodyDto ): Promise<SuccessDto>{
-    body.userId = userId; 
-    return this.paymentService.payForProducts(body);
-  }
+    payForProducts(@Param('userId') userId: number, @Body() body: PaymentBodyDto ): Promise<SuccessDto>{
+        body.userId = userId; 
+        return this.paymentService.payForProducts(body);
+    }
 }

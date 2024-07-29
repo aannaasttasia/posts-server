@@ -14,7 +14,7 @@ export class OrderEntity {
       date: Date;
 
   @Column('simple-array')
-    products: ProductItemEntity[];
+      products: ProductItemEntity[];
 
   @Column()
       totalPrice: number;

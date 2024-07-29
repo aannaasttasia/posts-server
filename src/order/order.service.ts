@@ -2,9 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEntity } from './db/order.entity';
 import { Repository } from 'typeorm';
-import { NewOrderDto } from './dto/new-order.dto';
-import { SuccessDto } from 'src/common/dto/success.dto';
-import { OrderDto } from './dto/order.dto';
 
 @Injectable()
 export class OrderService {

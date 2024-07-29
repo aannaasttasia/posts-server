@@ -9,7 +9,7 @@ import { SuccessDto } from 'src/common/dto/success.dto';
 import { CategoryDto } from './dto/category.dto';
 import { NewProductDto } from './dto/new-product.dto';
 import { ProductDto } from './dto/product.dto';
-import { NewProductItemDto } from './dto/new-product-item.dto';
+import { ProductItemDto } from './dto/product-item.dto';
 
 @Injectable()
 export class ProductService {
@@ -81,7 +81,7 @@ export class ProductService {
 
   // product from the cart methods
 
-  public async newProductItem(item: NewProductItemDto): Promise<SuccessDto> {
+  public async newProductItem(item: ProductItemDto): Promise<SuccessDto> {
     const productItemEntity = new ProductItemEntity();
     productItemEntity.productId = item.productId;
     productItemEntity.quantity = item.quantity;

@@ -12,7 +12,6 @@ export class SupportHistoryService {
     private supportHistoryRepository: Repository<SupportHistoryEntity>,
   ) {}
 
-  // support methods
 
   public async newSupportHistory(
     support: NewSupportHistoryDto,

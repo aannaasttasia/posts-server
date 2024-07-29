@@ -1,7 +1,7 @@
 export class NewProductDto {
   title: string;
   description: string;
-  price: bigint;
+  price: number;
   category: string;
   thumbnail: string;
 }

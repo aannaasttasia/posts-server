@@ -13,25 +13,25 @@ export class OrderService {
     private orderRepository: Repository<OrderEntity>,
   ) {}
 
-  // order methods
+  // // order methods
 
-  public async newOrder(order: NewOrderDto): Promise<SuccessDto> {
-    const orderEntity = new OrderEntity();
-    orderEntity.date = order.date;
-    orderEntity.totalPrice = order.totalPrice;
-    orderEntity.products = order.products;
-    orderEntity.usedId = order.userId;
-    await this.orderRepository.save(orderEntity);
-    return new SuccessDto();
-  }
+  // public async newOrder(order: NewOrderDto): Promise<SuccessDto> {
+  //   const orderEntity = new OrderEntity();
+  //   orderEntity.date = order.date;
+  //   orderEntity.totalPrice = order.totalPrice;
+  //   orderEntity.products = order.products;
+  //   orderEntity.usedId = order.userId;
+  //   await this.orderRepository.save(orderEntity);
+  //   return new SuccessDto();
+  // }
 
-  public async getOrders(): Promise<OrderDto[]> {
-    return (await this.orderRepository.find()).map((o) => ({
-      id: o.id,
-      userId: o.usedId,
-      totalPrice: o.totalPrice,
-      products: o.products,
-      date: o.date,
-    }));
-  }
+  // public async getOrders(): Promise<OrderDto[]> {
+  //   return (await this.orderRepository.find()).map((o) => ({
+  //     id: o.id,
+  //     userId: o.usedId,
+  //     totalPrice: o.totalPrice,
+  //     products: o.products,
+  //     date: o.date,
+  //   }));
+  // }
 }

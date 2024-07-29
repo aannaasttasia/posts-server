@@ -10,13 +10,13 @@ export class OrderController {
 
   // order methods
 
-  @Post('new')
-  newOrder(@Body() body: NewOrderDto): Promise<SuccessDto> {
-    return this.ordersService.newOrder(body);
-  }
+  // @Post('new')
+  // newOrder(@Body() body: NewOrderDto): Promise<SuccessDto> {
+  //   return this.ordersService.newOrder(body);
+  // }
 
-  @Get()
-  getOrders(): Promise<OrderDto[]> {
-    return this.ordersService.getOrders();
-  }
+  // @Get()
+  // getOrders(): Promise<OrderDto[]> {
+  //   return this.ordersService.getOrders();
+  // }
 }

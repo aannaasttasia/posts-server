@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PaymentBodyDto } from './dto';
+import { PaymentBodyDto } from './payment-body.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEntity } from 'src/order/db/order.entity';
 import { Repository } from 'typeorm';
@@ -12,13 +12,14 @@ export class PaymentService {
   constructor(
         @InjectRepository(OrderEntity)
         private orderRepository: Repository<OrderEntity>,
+
         @InjectRepository(UserEntity)
         private userRepository: Repository<UserEntity>,
+
         @InjectRepository(ProductEntity)
         private productRepository: Repository<ProductEntity>,
   ){}
 
-    
   public async payForProducts(paymentBody: PaymentBodyDto): Promise<SuccessDto>{
     const user = await this.userRepository.findOne({where: {id : paymentBody.userId}});
     let totalPrice = 0;

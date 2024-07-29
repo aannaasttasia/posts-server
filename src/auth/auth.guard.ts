@@ -35,7 +35,7 @@ export class AuthGuard implements CanActivate {
                 'You do not have permission to perform this action',
             );
         }
-
+        
         return true;
     }
 

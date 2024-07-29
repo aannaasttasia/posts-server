@@ -1,8 +1,9 @@
-import { Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { SuccessDto } from 'src/common/dto/success.dto';
 import { NewAdminDto } from './dto/new-admin.dto';
 import { AdminDto } from './dto/admin.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('admin')
 export class AdminController {
@@ -23,6 +24,7 @@ export class AdminController {
   }
 
   @Post('increase/:userId')
+  @UseGuards(AuthGuard)
   increaseUserBalance(
     @Param('userId') userId: number,
     @Body() body: { amount: number },

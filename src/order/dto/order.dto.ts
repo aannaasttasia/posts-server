@@ -1,9 +1,9 @@
-import { ProductDto } from 'src/product/dto/product.dto';
+import { ProductItemDto } from 'src/product/dto/product-item.dto';
 
 export class OrderDto {
     id: number;
     userId: number;
     totalPrice: number;
-    products: ProductDto[];
+    products: ProductItemDto[];
     date: Date;
 }

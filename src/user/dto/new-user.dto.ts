@@ -8,5 +8,5 @@ export class NewUserDto {
       phoneNumber: string;
   @IsEmail()
       email: string;
-    password: string;
+  password: string;
 }

@@ -1,7 +1,7 @@
 export class SuccessDto {
-  success: boolean;
+    success: boolean;
 
-  constructor() {
-    this.success = true;
-  }
+    constructor() {
+        this.success = true;
+    }
 }

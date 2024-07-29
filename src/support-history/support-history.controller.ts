@@ -5,12 +5,12 @@ import { SuccessDto } from 'src/common/dto/success.dto';
 
 @Controller('supportHistory')
 export class SupportHistoryController {
-  constructor(private readonly supportHistoryService: SupportHistoryService) {}
+    constructor(private readonly supportHistoryService: SupportHistoryService) {}
 
-  // support methods
+    // support methods
 
   @Post('new')
-  newSupportHistory(@Body() body: NewSupportHistoryDto): Promise<SuccessDto> {
-    return this.supportHistoryService.newSupportHistory(body);
-  }
+    newSupportHistory(@Body() body: NewSupportHistoryDto): Promise<SuccessDto> {
+        return this.supportHistoryService.newSupportHistory(body);
+    }
 }

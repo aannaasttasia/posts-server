@@ -5,23 +5,23 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 // @Unique(['email'])
 export class UserEntity {
   @PrimaryGeneratedColumn()
-    id: number;
+      id: number;
 
   @Column()
-    name: string;
+      name: string;
 
   @Column()
-    surname: string;
+      surname: string;
 
   @Column()
-    address: string;
+      address: string;
 
   @Column()
-    phoneNumber: string;
+      phoneNumber: string;
 
   @Column()
-    email: string;
+      email: string;
 
   @Column({ default: 0 })
-    balance: number;
+      balance: number;
 }

@@ -6,17 +6,17 @@ import { OrderDto } from './dto/order.dto';
 
 @Controller('order')
 export class OrderController {
-  constructor(private readonly ordersService: OrderService) {}
+    constructor(private readonly ordersService: OrderService) {}
 
-  // order methods
+    // order methods
 
   @Post('new')
-  newOrder(@Body() body: NewOrderDto): Promise<SuccessDto> {
-    return this.ordersService.newOrder(body);
-  }
+    newOrder(@Body() body: NewOrderDto): Promise<SuccessDto> {
+        return this.ordersService.newOrder(body);
+    }
 
   @Get()
   getOrders(): Promise<OrderDto[]> {
-    return this.ordersService.getOrders();
+      return this.ordersService.getOrders();
   }
 }

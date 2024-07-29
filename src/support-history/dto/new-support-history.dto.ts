@@ -1,12 +1,12 @@
 import { IsEmail } from 'class-validator';
 
 export class NewSupportHistoryDto {
-  userId: number;
+    userId: number;
   @IsEmail()
-    email: string;
+      email: string;
   description: string;
   date: Date;
   constructor() {
-    this.date = new Date();
+      this.date = new Date();
   }
 }

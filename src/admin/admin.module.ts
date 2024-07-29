@@ -9,8 +9,8 @@ import { UserModule } from 'src/user/user.module';
 import { UserEntity } from 'src/user/db/user.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([AdminEntity, PasswordEntity, UserEntity]), EncryptionModule, UserModule],
-  providers: [AdminService],
-  controllers: [AdminController]
+    imports:[TypeOrmModule.forFeature([AdminEntity, PasswordEntity, UserEntity]), EncryptionModule, UserModule],
+    providers: [AdminService],
+    controllers: [AdminController]
 })
 export class AdminModule {}

@@ -7,9 +7,9 @@ import { PasswordEntity } from '../auth/db/password.entity';
 import { EncryptionModule } from 'src/encryption/encryption.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity,PasswordEntity]), EncryptionModule],
-  controllers: [UserController],
-  providers: [UserService],
-  exports: [UserService],
+    imports: [TypeOrmModule.forFeature([UserEntity,PasswordEntity]), EncryptionModule],
+    controllers: [UserController],
+    providers: [UserService],
+    exports: [UserService],
 })
 export class UserModule {}

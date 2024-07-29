@@ -6,29 +6,29 @@ import { UserDto } from 'src/user/dto/user.dto';
 
 @Controller()
 export class UserController {
-  constructor(private readonly usersService: UserService) {}
+    constructor(private readonly usersService: UserService) {}
 
-  // user methods
+    // user methods
 
   @Post('user/new')
-  newUser(
-    @Body() body: { user: NewUserDto; password: string },
-  ): Promise<SuccessDto> {
-    return this.usersService.newUser(body);
-  }
+    newUser(
+    @Body() user: NewUserDto,
+    ): Promise<SuccessDto> {
+        return this.usersService.newUser(user);
+    }
 
   @Get('users')
   getUsers(): Promise<UserDto[]> {
-    return this.usersService.getUsers();
+      return this.usersService.getUsers();
   }
 
   @Get('user/:id')
   getUser(@Param() params: { id: number }): Promise<UserDto> {
-    return this.usersService.getUser(params.id);
+      return this.usersService.getUser(params.id);
   }
 
   @Delete('user/:id')
   deleteUser(@Param('id') id: number): Promise<SuccessDto> {
-    return this.usersService.deleteUser(id);
+      return this.usersService.deleteUser(id);
   }
 }

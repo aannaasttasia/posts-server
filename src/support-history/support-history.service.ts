@@ -27,6 +27,6 @@ export class SupportHistoryService {
     }
 
     public async getSupportHistory(): Promise<SupportHistoryDto[]>{
-        return await this.supportHistoryRepository.find()
+        return await this.supportHistoryRepository.find();
     }
 }

@@ -46,10 +46,10 @@ export class AuthGuard implements CanActivate {
             });         
             return payload.userId; 
         } catch (err) {
-          console.error('Failed to extract userId:', err);
-          return null;
+            console.error('Failed to extract userId:', err);
+            return null;
         }
-      }
+    }
 
     private extractTokenFromHeader(request: Request): string | undefined {
         const [type, token] = request.headers.authorization?.split(' ') ?? [];

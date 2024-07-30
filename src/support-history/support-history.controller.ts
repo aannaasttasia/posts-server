@@ -24,6 +24,6 @@ export class SupportHistoryController {
 
     @Get()
     getSupportHistory(): Promise<SupportHistoryDto[]>{
-        return this.supportHistoryService.getSupportHistory()
+        return this.supportHistoryService.getSupportHistory();
     }
 }

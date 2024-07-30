@@ -13,7 +13,7 @@ export class OrderEntity {
   @Column()
       date: Date;
 
-  @Column('simple-array')
+  @Column({ type: 'json' })
       products: ProductItemEntity[];
 
   @Column()

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEntity } from './db/order.entity';
 import { Repository } from 'typeorm';
 import { OrderDto } from './dto/order.dto';
+import { ProductItemDto } from 'src/product/dto/product-item.dto';
 
 @Injectable()
 export class OrderService {
@@ -16,7 +17,7 @@ export class OrderService {
             id: o.id,
             userId: o.usedId,
             totalPrice: o.totalPrice,
-            products: o.products,
+            products: o.products as ProductItemDto[],
             date: o.date,
         }));
     }

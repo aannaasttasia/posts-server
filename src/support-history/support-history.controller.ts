@@ -10,7 +10,7 @@ export class SupportHistoryController {
     constructor(private readonly supportHistoryService: SupportHistoryService, private readonly authGuard: AuthGuard) {}
 
     @Post('new')
-    async newSupportHistory(@Body() body: NewSupportHistoryDto, @Headers('authorization') authorization: string): Promise<SuccessDto> {
+    async newMessage(@Body() body: NewSupportHistoryDto, @Headers('authorization') authorization: string): Promise<SuccessDto> {
         const token = authorization?.split(' ')[1];
         if (!token) {
             throw new UnauthorizedException('Authorization token not found');
@@ -19,7 +19,7 @@ export class SupportHistoryController {
         if (body.userId === null) {
             throw new UnauthorizedException('Invalid or expired token');
         }
-        return this.supportHistoryService.newSupportHistory(body);
+        return this.supportHistoryService.newMessage(body);
     }
 
     @Get()

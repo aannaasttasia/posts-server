@@ -14,7 +14,7 @@ export class SupportHistoryService {
     ) {}
 
 
-    public async newSupportHistory(
+    public async newMessage(
         support: NewSupportHistoryDto,
     ): Promise<SuccessDto> {
         const supportHistoryEntity = new SupportHistoryEntity();

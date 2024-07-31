@@ -17,6 +17,9 @@ import { SupportHistoryModule } from './support-history/support-history.module';
 import { EncryptionModule } from './encryption/encryption.module';
 import { PaymentModule } from './payment/payment.module';
 import { OrderModule } from './order/order.module';
+import * as dotenv from 'dotenv';
+
+dotenv.config(); 
 
 @Module({
     imports: [

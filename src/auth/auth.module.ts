@@ -6,9 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PasswordEntity } from 'src/auth/db/password.entity';
 import { EncryptionModule } from 'src/encryption/encryption.module';
 import { JwtModule } from '@nestjs/jwt';
-import * as dotenv from 'dotenv';
-
-dotenv.config(); 
 
 @Module({
     imports: [
@@ -17,7 +14,7 @@ dotenv.config();
         EncryptionModule,
         JwtModule.register({
             global: true,
-            secret: process.env.SECRET,
+            secret: `${process.env.SECRET}`,
             signOptions: { expiresIn: '360s' },
         }),
     ],

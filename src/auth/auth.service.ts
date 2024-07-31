@@ -18,7 +18,7 @@ export class AuthService {
     async signIn(
         userId: number,
         pass: string,
-    ): Promise<{ access_token: string }> {
+    ): Promise<{ access_token: string}> {
         const user = await this.passwordRepository.findOne({ where: { userId } });
         if (!user) {
             throw new UnauthorizedException('User not found');
@@ -28,7 +28,7 @@ export class AuthService {
         ) {
             throw new UnauthorizedException('Invalid credentials');
         }
-        const payload = { sub: user.userId, admin: user.isAdmin };
+        const payload = { userId: user.userId, admin: user.isAdmin };
 
         return {
             access_token: await this.jwtService.signAsync(payload),

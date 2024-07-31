@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { PaymentBodyDto } from './payment-body.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEntity } from 'src/order/db/order.entity';
@@ -23,13 +23,17 @@ export class PaymentService {
     public async payForProducts(paymentBody: PaymentBodyDto): Promise<SuccessDto>{
         const user = await this.userRepository.findOne({where: {id : paymentBody.userId}});
         let totalPrice = 0;
-        paymentBody.products.map(async p=>{ 
-            const productItem = await this.productRepository.findOne({where: {id: p.productId}});
+        for (const p of paymentBody.products) {
+            const productItem = await this.productRepository.findOne({ where: { id: p.productId } });
+    
+            if (!productItem) {
+                throw new ConflictException(`Product with ID ${p.productId} not found`);
+            }
+    
             totalPrice += productItem.price * p.quantity;
-        });
-        console.log(totalPrice);
+        }
         if(user.balance < totalPrice){
-            throw new Error('There are insufficient funds in your balance');
+            throw new ConflictException('There are insufficient funds in your balance');
         }
         user.balance -= totalPrice;
         await this.userRepository.save(user);

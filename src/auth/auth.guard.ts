@@ -25,6 +25,7 @@ export class AuthGuard implements CanActivate {
             secret: jwtConstants.secret,
         });
         console.log(payload);
+        request.user = payload;
 
         if (!payload) {
             throw new ForbiddenException('Invalid token');
@@ -35,8 +36,19 @@ export class AuthGuard implements CanActivate {
                 'You do not have permission to perform this action',
             );
         }
-
         return true;
+    }
+    
+    async extractUserIdFromToken(token: string): Promise<number | null> {
+        try {
+            const payload = await this.jwtService.verifyAsync(token, {
+                secret: jwtConstants.secret,
+            });         
+            return payload.userId; 
+        } catch (err) {
+            console.error('Failed to extract userId:', err);
+            return null;
+        }
     }
 
     private extractTokenFromHeader(request: Request): string | undefined {

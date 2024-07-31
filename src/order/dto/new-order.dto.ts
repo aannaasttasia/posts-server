@@ -1,10 +1,10 @@
 import { IsDate } from 'class-validator';
-import { ProductDto } from 'src/product/dto/product.dto';
+import { ProductItemDto } from 'src/product/dto/product-item.dto';
 
 export class NewOrderDto {
     userId: number;
     totalPrice: number;
-    products: ProductDto[];
+    products: ProductItemDto[];
   @IsDate()
       date: Date;
 }

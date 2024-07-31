@@ -23,7 +23,7 @@ export class SupportHistoryController {
     }
 
     @Get()
-    getSupportHistory(): Promise<SupportHistoryDto[]>{
-        return this.supportHistoryService.getSupportHistory();
+    getSMessage(): Promise<SupportHistoryDto[]>{
+        return this.supportHistoryService.getMessage();
     }
 }

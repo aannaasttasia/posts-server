@@ -26,7 +26,7 @@ export class SupportHistoryService {
         return new SuccessDto();
     }
 
-    public async getSupportHistory(): Promise<SupportHistoryDto[]>{
+    public async getMessage(): Promise<SupportHistoryDto[]>{
         return await this.supportHistoryRepository.find();
     }
 }

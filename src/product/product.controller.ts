@@ -57,7 +57,7 @@ export class ProductController {
   }
 
   @Get('products/:categoryId')
-  getProductByCategory(@Param("categoryId") categoryId: number ): Promise<ProductDto[]> {
+  getProductByCategory(@Param('categoryId') categoryId: number ): Promise<ProductDto[]> {
       return this.productsService.getProductByCategory(categoryId);
   }
 

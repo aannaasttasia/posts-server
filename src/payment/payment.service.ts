@@ -23,16 +23,20 @@ export class PaymentService {
     public async payForProducts(paymentBody: PaymentBodyDto): Promise<SuccessDto>{
         const user = await this.userRepository.findOne({where: {id : paymentBody.userId}});
         let totalPrice = 0;
+        console.log(paymentBody.products)
         for (const p of paymentBody.products) {
-            const productItem = await this.productRepository.findOne({ where: { id: p.productId } });
-    
+            console.log(p.id)
+            const productItem = await this.productRepository.findOne({ where: { id: p.id } });
+            console.log(productItem.price)
             if (!productItem) {
-                throw new ConflictException(`Product with ID ${p.productId} not found`);
+                throw new ConflictException(`Product with ID ${p.id} not found`);
             }
     
             totalPrice += productItem.price * p.quantity;
         }
         if(user.balance < totalPrice){
+            console.log("user", user.balance)
+            console.log("total", totalPrice)
             throw new ConflictException('There are insufficient funds in your balance');
         }
         user.balance -= totalPrice;
@@ -42,7 +46,7 @@ export class PaymentService {
         orderEntity.date = new Date();
         orderEntity.totalPrice = totalPrice;
         orderEntity.products = paymentBody.products;
-        orderEntity.usedId = user.id;
+        orderEntity.userId = user.id;
         await this.orderRepository.save(orderEntity);
 
         return new SuccessDto();

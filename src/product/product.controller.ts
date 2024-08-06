@@ -56,6 +56,11 @@ export class ProductController {
       return this.productsService.getProduct(params.id);
   }
 
+  @Get('products/:categoryId')
+  getProductByCategory(@Param("categoryId") categoryId: number ): Promise<ProductDto[]> {
+      return this.productsService.getProductByCategory(categoryId);
+  }
+
   @Delete('product/:id')
   deleteProduct(@Param('id') id: number): Promise<SuccessDto> {
       return this.productsService.deleteProduct(id);

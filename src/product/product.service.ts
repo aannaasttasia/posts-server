@@ -49,7 +49,7 @@ export class ProductService {
 
     public async newProduct(product: NewProductDto): Promise<SuccessDto> {
         const productEntity = new ProductEntity();
-        productEntity.category = product.category;
+        productEntity.categoryId = product.categoryId;
         productEntity.description = product.description;
         productEntity.price = product.price;
         productEntity.thumbnail = product.thumbnail;
@@ -65,7 +65,7 @@ export class ProductService {
             title: p.title,
             description: p.description,
             price: p.price,
-            category: p.category,
+            categoryId: p.categoryId,
             thumbnail: p.thumbnail,
         }));
     }
@@ -73,6 +73,20 @@ export class ProductService {
     public async getProduct(id: number): Promise<ProductDto> {
         return await this.productRepository.findOne({ where: { id } });
     }
+
+    public async getProductByCategory(categoryId: number): Promise<ProductDto[]> {
+        const products = await this.productRepository.find({ where: { categoryId } });
+    
+        return products.map(p => ({
+            id: p.id,
+            title: p.title,
+            description: p.description,
+            price: p.price,
+            categoryId: p.categoryId,
+            thumbnail: p.thumbnail
+        }));
+    }
+    
 
     public async deleteProduct(id: number): Promise<SuccessDto> {
         await this.productRepository.delete(id);
@@ -83,7 +97,7 @@ export class ProductService {
 
     public async newProductItem(item: ProductItemDto): Promise<SuccessDto> {
         const productItemEntity = new ProductItemEntity();
-        productItemEntity.productId = item.productId;
+        productItemEntity.id = item.id;
         productItemEntity.quantity = item.quantity;
         await this.productItemRepository.save(productItemEntity);
         return new SuccessDto();

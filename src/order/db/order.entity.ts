@@ -8,7 +8,7 @@ export class OrderEntity {
       id: number;
 
   @Column()
-      usedId: number;
+      userId: number;
 
   @Column()
       date: Date;

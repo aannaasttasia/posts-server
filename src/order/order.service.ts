@@ -12,10 +12,10 @@ export class OrderService {
     private orderRepository: Repository<OrderEntity>,
     ) {}
 
-    public async getOrders(): Promise<OrderDto[]> {
-        return (await this.orderRepository.find()).map((o) => ({
+    public async getOrders(userId:number): Promise<OrderDto[]> {
+        return (await this.orderRepository.find({where: {userId}})).map((o) => ({
             id: o.id,
-            userId: o.usedId,
+            userId: o.userId,
             totalPrice: o.totalPrice,
             products: o.products as ProductItemDto[],
             date: o.date,

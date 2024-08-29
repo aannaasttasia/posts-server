@@ -12,4 +12,9 @@ export class PaymentController {
         body.userId = userId; 
         return this.paymentService.payForProducts(body);
     }
+    @Post('eth/:userId')
+    payForProductsInEth(@Param('userId') userId: number, @Body() body: PaymentBodyDto ): Promise<SuccessDto>{
+        body.userId = userId; 
+        return this.paymentService.payForProductsInEth(body);
+    }
 }

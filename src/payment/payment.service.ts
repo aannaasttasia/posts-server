@@ -52,4 +52,28 @@ export class PaymentService {
         return new SuccessDto();
     }
     
+    public async payForProductsInEth(paymentBody: PaymentBodyDto): Promise<SuccessDto>{
+        const user = await this.userRepository.findOne({where: {id : paymentBody.userId}});
+        let totalPrice = 0;
+        console.log(paymentBody.products);
+        for (const p of paymentBody.products) {
+            console.log(p.id);
+            const productItem = await this.productRepository.findOne({ where: { id: p.id } });
+            console.log(productItem.price);
+            if (!productItem) {
+                throw new ConflictException(`Product with ID ${p.id} not found`);
+            }
+            totalPrice += productItem.price * p.quantity;
+        }
+        await this.userRepository.save(user);
+
+        const orderEntity = new OrderEntity();
+        orderEntity.date = new Date();
+        orderEntity.totalPrice = totalPrice;
+        orderEntity.products = paymentBody.products;
+        orderEntity.userId = user.id;
+        await this.orderRepository.save(orderEntity);
+
+        return new SuccessDto();
+    }
 }

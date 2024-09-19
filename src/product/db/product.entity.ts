@@ -16,7 +16,7 @@ export class ProductEntity {
       price: number;
 
   @Column({ nullable: true })
-      category: string;
+      categoryId: number;
 
   @Column()
       thumbnail: string;

@@ -16,10 +16,10 @@ export class AuthService {
     ) {}
 
     async signIn(
-        userId: number,
+        email: string,
         pass: string,
     ): Promise<{ access_token: string}> {
-        const user = await this.passwordRepository.findOne({ where: { userId } });
+        const user = await this.passwordRepository.findOne({ where: { email } });
         if (!user) {
             throw new UnauthorizedException('User not found');
         }

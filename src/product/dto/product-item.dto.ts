@@ -1,5 +1,5 @@
 
 export class ProductItemDto {
-    productId: number;
+    id: number;
     quantity: number;
 }

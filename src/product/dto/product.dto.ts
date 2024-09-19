@@ -3,6 +3,6 @@ export class ProductDto {
     title: string;
     description: string;
     price: number;
-    category: string;
+    categoryId: number;
     thumbnail: string;
 }

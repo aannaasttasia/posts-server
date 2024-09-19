@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { OrderDto } from './dto/order.dto';
 
@@ -6,8 +6,8 @@ import { OrderDto } from './dto/order.dto';
 export class OrderController {
     constructor(private readonly ordersService: OrderService) {}
 
-  @Get()
-    getOrders(): Promise<OrderDto[]> {
-        return this.ordersService.getOrders();
+  @Get('/:userId')
+    getOrders(@Param('userId') userId: number): Promise<OrderDto[]> {
+        return this.ordersService.getOrders(userId);
     }
 }
